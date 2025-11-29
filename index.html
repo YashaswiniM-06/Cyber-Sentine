@@ -1,0 +1,91 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberSentine — AI Intrusion & Behavioral Detection</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="brand">
+      <div class="logo">🛡️</div>
+      <div class="title">
+        <h1>CyberSentine</h1>
+        <p>AI-based intrusion and behavioral anomaly detection</p>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button id="btnStart" class="btn primary">Start monitoring</button>
+      <button id="btnStop" class="btn">Stop</button>
+      <button id="btnSimAttack" class="btn danger">Simulate attack</button>
+    </div>
+  </header>
+
+  <main class="grid">
+    <section class="card col-span-2">
+      <h2>Realtime risk score</h2>
+      <canvas id="riskGauge" width="420" height="180"></canvas>
+      <div class="risk-legend">
+        <span class="badge safe">Safe</span>
+        <span class="badge warn">Warn</span>
+        <span class="badge danger">Danger</span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Behavioral signals</h2>
+      <ul class="signals" id="signalsList">
+        <li><strong>Keystroke rhythm:</strong> <span id="sigKeyRhythm">–</span></li>
+        <li><strong>Mouse velocity:</strong> <span id="sigMouseVel">–</span></li>
+        <li><strong>Paste frequency:</strong> <span id="sigPasteFreq">–</span></li>
+        <li><strong>Window focus:</strong> <span id="sigWindowFocus">–</span></li>
+        <li><strong>DevTools state:</strong> <span id="sigDevtools">–</span></li>
+      </ul>
+      <canvas id="sparkKey" width="300" height="70"></canvas>
+      <canvas id="sparkMouse" width="300" height="70"></canvas>
+    </section>
+
+    <section class="card">
+      <h2>Intrusion signals</h2>
+      <ul class="signals" id="intrusionsList">
+        <li><strong>Failed auth attempts:</strong> <span id="sigFailedAuth">0</span></li>
+        <li><strong>Rapid requests:</strong> <span id="sigRapidReq">0/min</span></li>
+        <li><strong>Suspicious headers:</strong> <span id="sigHeaders">–</span></li>
+        <li><strong>Known bad IP hits:</strong> <span id="sigBadIp">0</span></li>
+      </ul>
+      <canvas id="sparkReq" width="300" height="70"></canvas>
+    </section>
+
+    <section class="card col-span-2">
+      <h2>Event log</h2>
+      <div class="toolbar">
+        <input id="searchLogs" type="search" placeholder="Filter logs (e.g., paste, auth, devtools)" />
+        <button id="btnClearLogs" class="btn">Clear logs</button>
+        <button id="btnExport" class="btn">Export JSON</button>
+      </div>
+      <div id="logStream" class="log-stream"></div>
+    </section>
+
+    <section class="card col-span-2">
+      <h2>Demo area</h2>
+      <div class="demo">
+        <input id="demoMailId" type="text" placeholder="MailId" />
+        <input id="demoPassword" type="password" placeholder="Password" />
+        <div class="demo-actions">
+          <button id="btnLogin" class="btn primary">Login</button>
+          <button id="btnPaste" class="btn">Trigger paste</button>
+          <button id="btnRapidReq" class="btn">Rapid requests</button>
+        </div>
+        <p class="tip">Type naturally, move your mouse, paste content, switch tabs, or open DevTools to see detection in action.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
